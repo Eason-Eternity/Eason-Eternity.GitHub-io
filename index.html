@@ -14,7 +14,6 @@
             box-sizing: border-box; 
         }
         
-        /* 🌟 全屏背景图 */
         body {
             background: url('https://raw.githubusercontent.com/Eason-Eternity/Eason-Eternity.github.io/main/df297f60792f2e8baabaae38dc7f7898.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -30,111 +29,99 @@
             padding: 1.5rem 1rem;
         }
         
-        /* 🪟 毛玻璃卡片 */
+        /* 🪟 柔和毛玻璃 - 降低对比度 */
         .glass-card {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-            transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
         }
         
-        /* ✨ 气派标题 - 白金色 */
+        /* ✨ 标题 - 柔和深灰 */
         .hero-title {
             font-family: 'Playfair Display', 'Inter', serif;
-            font-size: 3.2rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 80%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 20px rgba(255,255,255,0.3);
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #2c3e50;
+            text-shadow: 0 2px 8px rgba(255,255,255,0.3);
             margin-bottom: 0.25rem;
             line-height: 1.1;
         }
         
         .hero-sub {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #f1f5f9;
-            letter-spacing: 0.3px;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #4a5568;
             margin-top: 0.25rem;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        /* 👤 头像悬浮升级 */
         .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 24px;
+            width: 76px;
+            height: 76px;
+            border-radius: 22px;
             object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 20px -8px rgba(0,0,0,0.08);
             margin-bottom: 1rem;
-            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            transition: all 0.2s ease;
         }
         
         .avatar:hover {
-            transform: scale(1.05);
-            border-color: white;
-            box-shadow: 0 30px 50px -16px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+            border-color: rgba(255,255,255,0.9);
         }
         
-        /* 🏷️ 标签 - 白透质感 */
+        /* 🏷️ 标签 - 柔和灰 */
         .badge {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-            color: white;
-            padding: 0.4rem 1.1rem;
+            color: #4a5568;
+            padding: 0.35rem 1rem;
             border-radius: 100px;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.3px;
         }
         
-        /* 统计卡片 */
+        /* 统计卡片 - 更透更柔 */
         .stat-card {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 20px;
             padding: 1.25rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.02);
         }
         
         .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: white;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #2c3e50;
             line-height: 1;
-            letter-spacing: -0.01em;
-            text-shadow: 0 2px 10px rgba(255,255,255,0.3);
         }
         
         .stat-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 0.5px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #5a6a7a;
+            letter-spacing: 0.3px;
             text-transform: uppercase;
             margin-top: 0.25rem;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
         }
         
-        /* 链接卡片 - 白透版 */
+        /* 链接卡片 - 柔和版 */
         .link-card {
-            background: rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 20px;
             padding: 1rem 1.25rem;
@@ -143,193 +130,219 @@
             justify-content: space-between;
             margin-bottom: 0.75rem;
             text-decoration: none;
-            color: white;
-            transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            color: #2c3e50;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
         }
         
         .link-card:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.1);
-            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -8px rgba(0,0,0,0.05);
         }
         
-        /* 图标容器 - 白透 */
+        /* 图标容器 - 柔和 */
         .icon-box {
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.2);
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-            border-radius: 16px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.2s ease;
-            color: white;
+            color: #4a5568;
         }
         
         .link-card:hover .icon-box {
-            background: rgba(255, 255, 255, 0.35);
-            border-color: rgba(255, 255, 255, 0.6);
-            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
-        /* 卡片文字 - 白色 */
         .link-card .font-semibold {
-            color: white;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1rem;
         }
         
         .link-card .text-xs {
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            color: #5a6a7a;
         }
         
-        /* 按钮 - 白透高级 */
-        .btn-glow {
-            background: rgba(255, 255, 255, 0.25);
+        /* 按钮 - 柔和 */
+        .btn-soft {
+            background: rgba(255, 255, 255, 0.55);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 0.5rem 1.4rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: white;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            letter-spacing: 0.3px;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
-        }
-        
-        .btn-glow:hover {
-            background: rgba(255, 255, 255, 0.4);
-            border-color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        /* 分类标题 - 白金光 */
-        .section-title {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.4rem 1.4rem;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.45rem 1.3rem;
             border-radius: 100px;
-            color: white;
             font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
-        }
-        
-        /* 页脚项目 - 白透 */
-        .footer-item {
-            color: white;
-            font-size: 0.8rem;
-            text-decoration: none;
-            padding: 0.4rem 1.2rem;
-            border-radius: 100px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            transition: all 0.2s ease;
-            letter-spacing: 0.3px;
             font-weight: 500;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            color: #4a5568;
+            transition: all 0.2s ease;
+            letter-spacing: 0.2px;
         }
         
-        .footer-item:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.6);
-            color: white;
+        .btn-soft:hover {
+            background: rgba(255, 255, 255, 0.75);
+            border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-1px);
         }
         
-        /* 分隔线 */
-        .divider {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(4px);
-            margin: 2rem 0 1.5rem;
+        /* 分类标题 - 柔和灰条 */
+        .section-title {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 1.3rem;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 100px;
+            color: #3a4a5a;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         
-        /* 在线状态标识 - 白金徽章 */
-        .status-badge {
-            background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15));
+        /* 原创卡片 - 特别柔和 */
+        .original-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 24px;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+        }
+        
+        .latest-badge {
+            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(4px);
-            color: white;
-            padding: 0.25rem 1rem;
+            color: #e67e22;
+            padding: 0.2rem 1rem;
             border-radius: 100px;
             font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(255,255,255,0.4);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            text-transform: uppercase;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
         }
         
-        /* 原创卡片文字 - 白色 */
-        .glass-card .text-gray-900 {
-            color: white !important;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        .post-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 0.5rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.01em;
         }
         
-        .glass-card .text-gray-700 {
-            color: rgba(255, 255, 255, 0.9) !important;
+        .post-desc {
+            font-size: 0.85rem;
+            color: #5a6a7a;
         }
         
-        /* 最新标签 - 白金光 */
-        .bg-gradient-to-r.from-amber-500\/90 {
-            background: rgba(255, 255, 255, 0.25) !important;
+        .read-btn {
+            background: rgba(52, 152, 219, 0.2);
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            color: white;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            color: #2980b9;
+            padding: 0.6rem 1.6rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
         
-        /* 阅读按钮 - 白透 */
-        .bg-gradient-to-r.from-blue-600 {
-            background: rgba(255, 255, 255, 0.25) !important;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            color: white;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        .read-btn:hover {
+            background: rgba(52, 152, 219, 0.3);
+            border-color: rgba(52, 152, 219, 0.3);
+            transform: translateY(-1px);
         }
         
-        .bg-gradient-to-r.from-blue-600:hover {
-            background: rgba(255, 255, 255, 0.35) !important;
-            border-color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* 版权 - 白透 */
-        .bg-black\/15 {
-            background: rgba(255, 255, 255, 0.15) !important;
-            backdrop-filter: blur(4px);
+        /* 社群卡片 - 柔和 */
+        .community-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.25);
-            color: white;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            border-radius: 24px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        
+        /* 页脚 - 柔和 */
+        .footer-item {
+            color: #5a6a7a;
+            font-size: 0.75rem;
+            text-decoration: none;
+            padding: 0.35rem 1.1rem;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .footer-item:hover {
+            background: rgba(255, 255, 255, 0.6);
+            color: #2c3e50;
+        }
+        
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 1.8rem 0 1.5rem;
+        }
+        
+        .status-badge {
+            background: rgba(46, 204, 113, 0.2);
+            backdrop-filter: blur(4px);
+            color: #27ae60;
+            padding: 0.2rem 0.9rem;
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+        }
+        
+        .copyright {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            color: #5a6a7a;
+            display: inline-block;
+            margin-top: 1.5rem;
         }
     </style>
 </head>
 <body>
     <div class="content">
         
-        <!-- ===== 头部 - 白金色 ===== -->
+        <!-- ===== 头部 - 柔和灰 ===== -->
         <div class="flex flex-col items-center text-center mb-8">
             <img src="https://raw.githubusercontent.com/Eason-Eternity/Eason-Eternity.github.io/4d4c13c2e179aeb1ebc50562fac31275957560ee/aabcb4cc94314e40637436d9306ae373.jpg" 
                  alt="宇少" 
                  class="avatar">
             
-            <!-- ✨ 白金色 @宇少 -->
             <div class="hero-title">@宇少</div>
             <div class="flex items-center gap-2 mt-1 mb-2">
                 <span class="status-badge">⚡ 已上线</span>
@@ -337,7 +350,7 @@
             <p class="hero-sub">
                 全栈练习生 · 把踩过的坑铺成路
             </p>
-            <div class="flex flex-wrap gap-2 mt-5">
+            <div class="flex flex-wrap gap-2 mt-4">
                 <span class="badge">📍 重庆</span>
                 <span class="badge">🔗 yushao.me</span>
                 <span class="badge">🕒 2026</span>
@@ -363,20 +376,20 @@
         <!-- ===== 常用工具 ===== -->
         <div class="flex items-center justify-between mb-4">
             <span class="section-title">📌 常用工具</span>
-            <span class="text-xs text-white/80 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">点击直达</span>
+            <span class="text-xs text-gray-600 bg-white/30 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30">点击直达</span>
         </div>
 
         <div class="mb-6">
             <!-- 梯子 -->
             <a href="https://www.nfsq.us/#/register?code=Msqx2m4g" class="link-card">
                 <div class="flex items-center gap-3.5">
-                    <div class="icon-box text-white">🌊</div>
+                    <div class="icon-box">🌊</div>
                     <div>
-                        <div class="font-semibold text-white">梯子冲浪工具</div>
-                        <div class="text-xs text-white/90">稳定 · 高速 · 不限设备</div>
+                        <div class="font-semibold">梯子冲浪工具</div>
+                        <div class="text-xs">稳定 · 高速 · 不限设备</div>
                     </div>
                 </div>
-                <div class="btn-glow text-white">
+                <div class="btn-soft">
                     访问 →
                 </div>
             </a>
@@ -384,13 +397,13 @@
             <!-- UC -->
             <a href="https://drive.uc.cn/s/8df281ec6dd54?public=1" class="link-card">
                 <div class="flex items-center gap-3.5">
-                    <div class="icon-box text-white">📦</div>
+                    <div class="icon-box">📦</div>
                     <div>
-                        <div class="font-semibold text-white">UC网盘下载</div>
-                        <div class="text-xs text-white/90">大文件 · 不限速</div>
+                        <div class="font-semibold">UC网盘下载</div>
+                        <div class="text-xs">大文件 · 不限速</div>
                     </div>
                 </div>
-                <div class="btn-glow text-white">
+                <div class="btn-soft">
                     下载 →
                 </div>
             </a>
@@ -398,13 +411,13 @@
             <!-- 夸克 -->
             <a href="https://pan.quark.cn/s/4a67f42952f3" class="link-card">
                 <div class="flex items-center gap-3.5">
-                    <div class="icon-box text-white">☁️</div>
+                    <div class="icon-box">☁️</div>
                     <div>
-                        <div class="font-semibold text-white">夸克网盘</div>
-                        <div class="text-xs text-white/90">资源同步 · 在线解压</div>
+                        <div class="font-semibold">夸克网盘</div>
+                        <div class="text-xs">资源同步 · 在线解压</div>
                     </div>
                 </div>
-                <div class="btn-glow text-white">
+                <div class="btn-soft">
                     提取 →
                 </div>
             </a>
@@ -412,13 +425,13 @@
             <!-- 百度 -->
             <a href="https://pan.baidu.com/s/1YRSttwYqv3smFsTSql4u5A?pwd=42fy" class="link-card">
                 <div class="flex items-center gap-3.5">
-                    <div class="icon-box text-white">🗂️</div>
+                    <div class="icon-box">🗂️</div>
                     <div>
-                        <div class="font-semibold text-white">百度下载</div>
-                        <div class="text-xs text-white/90">网盘直链 · 提速脚本</div>
+                        <div class="font-semibold">百度下载</div>
+                        <div class="text-xs">网盘直链 · 提速脚本</div>
                     </div>
                 </div>
-                <div class="btn-glow text-white">
+                <div class="btn-soft">
                     高速 →
                 </div>
             </a>
@@ -426,13 +439,13 @@
             <!-- 迅雷 -->
             <a href="https://pan.xunlei.com/s/VONV1pd7HvwnZNMYqmDDTcRQA1?pwd=fnux#" class="link-card">
                 <div class="flex items-center gap-3.5">
-                    <div class="icon-box text-white">⚡</div>
+                    <div class="icon-box">⚡</div>
                     <div>
-                        <div class="font-semibold text-white">迅雷下载</div>
-                        <div class="text-xs text-white/90">磁力 · 种子 · 敏感资源</div>
+                        <div class="font-semibold">迅雷下载</div>
+                        <div class="text-xs">磁力 · 种子 · 敏感资源</div>
                     </div>
                 </div>
-                <div class="btn-glow text-white">
+                <div class="btn-soft">
                     加速 →
                 </div>
             </a>
@@ -441,39 +454,37 @@
         <!-- ===== 我的原创 ===== -->
         <div class="flex items-center justify-between mb-4">
             <span class="section-title">📝 我的原创</span>
-            <span class="text-xs text-white/80 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">最新</span>
+            <span class="text-xs text-gray-600 bg-white/30 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30">最新</span>
         </div>
         
-        <div class="glass-card p-5 flex justify-between items-center mb-8">
+        <div class="original-card">
             <div>
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="text-xs bg-white/20 backdrop-blur-sm text-white px-2.5 py-1 rounded-full border border-white/30 font-medium">🔥 最新</span>
+                <div class="latest-badge">
+                    🔥 最新
                 </div>
-                <div class="font-bold text-white text-2xl tracking-tight">从404到yushao.me</div>
-                <div class="text-sm text-white/90 mt-1.5 flex items-center gap-2">
-                    <span>博客折腾日记 · 绿锁亮了</span>
-                </div>
+                <div class="post-title">从404到yushao.me</div>
+                <div class="post-desc">博客折腾日记 · 绿锁亮了</div>
             </div>
             <a href="https://www.yushao.me/blog-404-to-yushao.html" 
-               class="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-semibold border border-white/30 hover:bg-white/30 hover:border-white/60 transition-all duration-300 inline-flex items-center gap-1 shadow-lg">
-                阅读 <span class="text-lg leading-none">→</span>
+               class="read-btn">
+                阅读 →
             </a>
         </div>
 
         <!-- ===== 加入社群 ===== -->
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between mb-4 mt-8">
             <span class="section-title">💬 社群</span>
         </div>
         
-        <div class="glass-card p-5 flex items-center justify-between">
+        <div class="community-card">
             <div class="flex items-center gap-3.5">
-                <div class="icon-box text-white text-xl">💬</div>
+                <div class="icon-box text-xl">💬</div>
                 <div>
-                    <div class="font-semibold text-white">加入QQ频道</div>
-                    <div class="text-xs text-white/90">技术交流 · 每日分享</div>
+                    <div class="font-semibold" style="color: #2c3e50;">加入QQ频道</div>
+                    <div class="text-xs" style="color: #5a6a7a;">技术交流 · 每日分享</div>
                 </div>
             </div>
-            <a href="https://pd.qq.com/s/9czm8o309?b=9" target="_blank" class="btn-glow text-white">
+            <a href="https://pd.qq.com/s/9czm8o309?b=9" target="_blank" class="btn-soft">
                 马上加入 →
             </a>
         </div>
@@ -482,27 +493,19 @@
         <div class="divider"></div>
 
         <!-- ===== 页脚 ===== -->
-        <div class="flex flex-wrap items-center justify-center gap-3">
-            <a href="#" class="footer-item flex items-center gap-1.5">
-                <span>©</span> 宇少
-            </a>
-            <a href="#" class="footer-item flex items-center gap-1.5">
-                <span>🔗</span> yushao.me
-            </a>
-            <a href="#" class="footer-item flex items-center gap-1.5">
-                <span>📡</span> RSS
-            </a>
-            <a href="#" class="footer-item flex items-center gap-1.5">
-                <span>🐙</span> GitHub
-            </a>
-            <a href="#" class="footer-item flex items-center gap-1.5">
-                <span>🔒</span> 证书有效
-            </a>
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+            <a href="#" class="footer-item">© 宇少</a>
+            <a href="#" class="footer-item">🔗 yushao.me</a>
+            <a href="#" class="footer-item">📡 RSS</a>
+            <a href="#" class="footer-item">🐙 GitHub</a>
+            <a href="#" class="footer-item">🔒 证书有效</a>
         </div>
         
         <!-- ===== 版权 ===== -->
-        <div class="text-center mt-6 text-xs text-white bg-white/15 backdrop-blur-sm py-2.5 px-5 rounded-full mx-auto w-fit border border-white/25 shadow-lg">
-            ✦ 宇少的数字网站 · 2026 ✦
+        <div class="text-center">
+            <div class="copyright">
+                ✦ 宇少的数字花园 · 2026 ✦
+            </div>
         </div>
         
         <div class="h-12"></div>
