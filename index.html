@@ -20,18 +20,6 @@
             margin: 1.5rem 0;
         }
         
-        @media (max-width: 640px) {
-            .entry-card {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                text-align: center !important;
-            }
-            .entry-card .flex {
-                justify-content: center !important;
-            }
-        }
-        
         /* 极简链接 */
         .nav-link {
             color: #64748b;
@@ -52,6 +40,10 @@
             padding: 1.75rem 1.5rem;
             transition: all 0.25s ease;
             box-shadow: 0 8px 20px -8px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
         
         .theme-card:hover {
@@ -89,7 +81,7 @@
             border-color: #94a3b8;
         }
         
-        /* 标签样式 */
+        /* 标签样式 - 居中 */
         .resource-badge {
             background: rgba(241, 245, 249, 0.9);
             backdrop-filter: blur(4px);
@@ -102,6 +94,7 @@
             border: 1px solid rgba(203, 213, 225, 0.5);
             display: inline-flex;
             align-items: center;
+            margin-left: 0;
         }
         
         .new-badge {
@@ -110,12 +103,37 @@
             border: 1px solid rgba(253, 230, 138, 0.5);
         }
         
-        /* 标题区域 - 为背景照片打基础 */
-        .hero-section {
-            position: relative;
-            z-index: 10;
+        /* 标题区域 - 居中 */
+        .card-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 1rem;
         }
         
+        .icon-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            width: 100%;
+        }
+        
+        /* 描述文字居中 */
+        .card-desc {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(203, 213, 225, 0.3);
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+        
+        /* 英雄区标签 */
         .hero-tag {
             background: rgba(0, 0, 0, 0.05);
             backdrop-filter: blur(4px);
@@ -147,44 +165,42 @@
         <!-- 极简线条分隔 -->
         <div class="divider mb-10"></div>
 
-        <!-- 两大主题卡片 - 完全包裹内容，为背景照片打基础 -->
+        <!-- 两大主题卡片 - 完全居中 -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-6 mb-16 sm:px-0">
-            <!-- 下载区 - 主题卡片 -->
+            <!-- 下载区 - 主题卡片 居中版 -->
             <a href="download.html" class="group block theme-card sm:ml-0 sm:mr-0">
-                <div class="flex items-center justify-between w-full mb-3">
-                    <div class="flex items-center gap-2 sm:gap-3">
-                        <span class="text-3xl sm:text-4xl transform transition-transform group-hover:scale-110">📦</span>
-                        <span class="text-xl sm:text-2xl font-semibold text-gray-800 group-hover:text-gray-900">下载区</span>
-                    </div>
-                    <span class="resource-badge text-xs px-3 py-1.5">24个资源</span>
+                <div class="icon-title">
+                    <span class="text-3xl sm:text-4xl transform transition-transform group-hover:scale-110">📦</span>
+                    <span class="text-xl sm:text-2xl font-semibold text-gray-800 group-hover:text-gray-900">下载区</span>
                 </div>
                 
-                <p class="text-sm sm:text-base text-gray-600 mb-4 border-b border-gray-100/80 pb-4">
-                    网盘 · 工具 · 直链
-                </p>
+                <span class="resource-badge text-xs px-3 py-1.5 mb-3">24个资源</span>
                 
-                <div class="flex justify-center sm:justify-start">
+                <div class="card-desc">
+                    网盘 · 工具 · 直链
+                </div>
+                
+                <div class="flex justify-center w-full">
                     <span class="entry-btn group-hover:bg-white group-hover:border-gray-300">
                         进入储藏格 →
                     </span>
                 </div>
             </a>
             
-            <!-- 更新公告 - 主题卡片 -->
+            <!-- 更新公告 - 主题卡片 居中版 -->
             <a href="notice.html" class="group block theme-card sm:ml-0 sm:mr-0">
-                <div class="flex items-center justify-between w-full mb-3">
-                    <div class="flex items-center gap-2 sm:gap-3">
-                        <span class="text-3xl sm:text-4xl transform transition-transform group-hover:scale-110">📋</span>
-                        <span class="text-xl sm:text-2xl font-semibold text-gray-800 group-hover:text-gray-900">更新公告</span>
-                    </div>
-                    <span class="resource-badge new-badge text-xs px-3 py-1.5">4条新</span>
+                <div class="icon-title">
+                    <span class="text-3xl sm:text-4xl transform transition-transform group-hover:scale-110">📋</span>
+                    <span class="text-xl sm:text-2xl font-semibold text-gray-800 group-hover:text-gray-900">更新公告</span>
                 </div>
                 
-                <p class="text-sm sm:text-base text-gray-600 mb-4 border-b border-gray-100/80 pb-4">
-                    动态 · 折腾 · 记录
-                </p>
+                <span class="resource-badge new-badge text-xs px-3 py-1.5 mb-3">4条新</span>
                 
-                <div class="flex justify-center sm:justify-start">
+                <div class="card-desc">
+                    动态 · 折腾 · 记录
+                </div>
+                
+                <div class="flex justify-center w-full">
                     <span class="entry-btn group-hover:bg-white group-hover:border-gray-300">
                         翻阅笔记 →
                     </span>
