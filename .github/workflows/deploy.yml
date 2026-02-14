@@ -1,0 +1,22 @@
+name: 自动部署到 GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 改成你的主分支名（可能是 main 或 master）
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 直接部署静态文件
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .  # 部署根目录下的所有文件
+          branch: gh-pages  # 部署到 gh-pages 分支
+          clean: true
