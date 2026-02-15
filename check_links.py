@@ -45,21 +45,21 @@ def check_link(name, url):
             'Connection': 'keep-alive',
         }
         print(f"正在检查: {name}")
-
-# 特殊处理夸克
-if "quark.cn" in url:
-    return check_quark_special(name, url, headers)
-
-# 特殊处理迅雷
-if "xunlei.com" in url:
-    return check_xunlei_special(name, url, headers)
-
-# 判断是否在白名单
-is_whitelist = False
-for domain in WHITELIST_DOMAINS:
-    if domain in url and domain != "xunlei.com":  # 迅雷已单独处理
-        is_whitelist = True
-        break
+        
+        # 特殊处理夸克
+        if "quark.cn" in url:
+            return check_quark_special(name, url, headers)
+        
+        # 特殊处理迅雷
+        if "xunlei.com" in url:
+            return check_xunlei_special(name, url, headers)
+        
+        # 判断是否在白名单
+        is_whitelist = False
+        for domain in WHITELIST_DOMAINS:
+            if domain in url and domain != "xunlei.com":  # 迅雷已单独处理
+                is_whitelist = True
+                break
         
         # 重试机制
         for i in range(3):
@@ -93,6 +93,49 @@ for domain in WHITELIST_DOMAINS:
             return 'suspect', f"白名单域名异常: {str(e)}"
         else:
             return 'bad', f"异常: {str(e)}"
+
+def check_quark_special(name, url, headers):
+    """专门处理夸克网盘"""
+    try:
+        # 夸克也需要伪装浏览器
+        headers.update({
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Cache-Control': 'no-cache',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+            'Upgrade-Insecure-Requests': '1',
+        })
+        
+        # 重试3次
+        for i in range(3):
+            try:
+                r = requests.get(url, timeout=20, headers=headers, allow_redirects=True)
+                text = r.text.lower()
+                
+                # 夸克特有的失效关键词
+                quark_dead_keywords = ["失效", "已取消", "不存在", "违规", "下架", "禁止分享"]
+                
+                for kw in quark_dead_keywords:
+                    if kw in text:
+                        return 'bad', f"页面包含失效关键词: {kw}"
+                
+                # 如果页面包含"输入提取码"或"保存到网盘"，说明正常
+                if "提取码" in text or "保存到网盘" in text or "保存至网盘" in text:
+                    return 'good', "正常（可访问）"
+                
+                # 默认认为正常（忽略状态码）
+                return 'good', "正常（忽略状态码）"
+                
+            except Exception as e:
+                if i == 2:
+                    return 'suspect', f"夸克特殊处理仍失败: {str(e)}"
+                time.sleep(3)
+                
+    except Exception as e:
+        return 'suspect', f"夸克检测异常: {str(e)}"
 
 def check_xunlei_special(name, url, headers):
     """专门处理迅雷链接"""
