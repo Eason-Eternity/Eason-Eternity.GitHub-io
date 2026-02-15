@@ -1,12 +1,12 @@
 import requests
 import smtplib
 from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 import time
+import os
+import re
 
-# ===== 配置区域（按需修改）=====
-# 你的网盘链接列表
+# ===== 配置区域 =====
 LINKS = [
     {"name": "UC网盘", "url": "https://drive.uc.cn/s/8df281ec6dd54?public=1"},
     {"name": "夸克网盘", "url": "https://pan.quark.cn/s/4a67f42952f3"},
@@ -15,58 +15,110 @@ LINKS = [
     {"name": "梯子工具", "url": "https://www.nfsq.us/#/register?code=Msqx2m4g"},
 ]
 
-# 邮箱配置（用你的163邮箱）
+# 邮箱配置
 SMTP_SERVER = "smtp.163.com"
 SMTP_PORT = 465
 SENDER_EMAIL = "lxy_3621@163.com"
-SENDER_PASSWORD = "QTYb9UdqkMghV6if"  # ⚠️ 稍后告诉你哪里获取
+SENDER_PASSWORD = os.environ.get('EMAIL_PASSWORD', 'QTYb9UdqkMghV6if')
 RECEIVER_EMAIL = "lxy_3621@163.com"
 
-# 失效关键词（页面出现这些就算失效）
+# 失效关键词
 KEYWORDS = ["失效", "已取消", "不存在", "404", "not found", "过期", "删除"]
+
+# 白名单域名（这些网站即使报错也可能是反爬，需要人工确认）
+WHITELIST_DOMAINS = ["nfsq.us", "xunlei.com"]
+
+# 状态码白名单（这些状态码不直接判失效）
+WHITELIST_CODES = [403, 429, 503]
 # ===== 配置结束 =====
 
 def check_link(name, url):
-    """检查单个链接是否有效"""
+    """
+    检查链接状态，返回 (等级, 原因)
+    等级: 'good' (正常), 'suspect' (可疑), 'bad' (失效)
+    """
     try:
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            'Connection': 'keep-alive',
         }
         print(f"正在检查: {name}")
-        r = requests.get(url, timeout=15, headers=headers, allow_redirects=True)
         
-        # 检查HTTP状态码
-        if r.status_code != 200:
-            return False, f"HTTP {r.status_code}"
+        # 判断是否在白名单
+        is_whitelist = False
+        for domain in WHITELIST_DOMAINS:
+            if domain in url:
+                is_whitelist = True
+                break
         
-        # 检查页面内容是否包含失效关键词
-        text = r.text.lower()
-        for kw in KEYWORDS:
-            if kw in text:
-                return False, f"页面包含关键词: {kw}"
+        # 重试机制
+        for i in range(3):
+            try:
+                r = requests.get(url, timeout=15, headers=headers, allow_redirects=True)
+                break
+            except Exception as e:
+                if i == 2:  # 最后一次重试失败
+                    if is_whitelist:
+                        return 'suspect', f"白名单域名连接失败（可能反爬）: {str(e)}"
+                    else:
+                        return 'bad', f"连接失败: {str(e)}"
+                time.sleep(2)
         
-        return True, "正常"
+        # 检查状态码
+        if r.status_code == 200:
+            # 检查页面内容
+            text = r.text.lower()
+            for kw in KEYWORDS:
+                if kw in text:
+                    return 'bad', f"页面包含失效关键词: {kw}"
+            return 'good', "正常"
+        
+        elif r.status_code in WHITELIST_CODES or is_whitelist:
+            # 白名单状态码或白名单域名
+            return 'suspect', f"返回{r.status_code}，可能反爬，需人工确认"
+        
+        else:
+            return 'bad', f"HTTP {r.status_code}"
+            
     except Exception as e:
-        return False, f"连接失败: {str(e)}"
+        if is_whitelist:
+            return 'suspect', f"白名单域名异常: {str(e)}"
+        else:
+            return 'bad', f"异常: {str(e)}"
 
-def send_email(broken_links):
-    """发送邮件通知"""
-    subject = f"【宇少数字网】链接失效检测报告 - {datetime.now().strftime('%Y-%m-%d')}"
+def send_email(results):
+    """发送邮件通知（区分等级）"""
+    good = [r for r in results if r['level'] == 'good']
+    suspect = [r for r in results if r['level'] == 'suspect']
+    bad = [r for r in results if r['level'] == 'bad']
+    
+    subject = f"【宇少数字网】链接检测报告 - {datetime.now().strftime('%Y-%m-%d')}"
     
     body = f"检测时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
     body += "=" * 50 + "\n\n"
     
-    if not broken_links:
-        body += "✅ 所有链接均正常，无需处理。\n"
-    else:
-        body += "⚠️ 以下链接可能已失效，请及时处理：\n\n"
-        for link in broken_links:
-            body += f"🔴 {link['name']}\n"
-            body += f"   链接: {link['url']}\n"
-            body += f"   原因: {link['reason']}\n\n"
+    if bad:
+        body += "🔴 以下链接确定失效，请尽快处理：\n\n"
+        for link in bad:
+            body += f"  • {link['name']}: {link['reason']}\n"
+        body += "\n"
     
-    body += "=" * 50 + "\n"
-    body += "本邮件由 GitHub Actions 自动发送，请勿回复。"
+    if suspect:
+        body += "🟡 以下链接状态可疑，建议人工确认：\n\n"
+        for link in suspect:
+            body += f"  • {link['name']}: {link['reason']}\n"
+        body += "\n"
+    
+    if good:
+        body += f"🟢 正常链接 ({len(good)} 个)\n"
+    
+    if not bad and not suspect:
+        body += "✅ 所有链接均正常。\n"
+    
+    body += "\n" + "=" * 50 + "\n"
+    body += "本邮件由 GitHub Actions 自动发送。"
     
     msg = MIMEText(body, 'plain', 'utf-8')
     msg['Subject'] = subject
@@ -86,29 +138,30 @@ def send_email(broken_links):
 
 def main():
     print("=" * 50)
-    print("链接失效检测开始")
+    print("链接失效检测开始（三档机制）")
     print("=" * 50)
     
-    broken_links = []
-    
+    results = []
     for link in LINKS:
-        is_ok, reason = check_link(link['name'], link['url'])
-        if not is_ok:
-            broken_links.append({
-                'name': link['name'],
-                'url': link['url'],
-                'reason': reason
-            })
-        time.sleep(2)  # 礼貌性延迟，避免被封
+        level, reason = check_link(link['name'], link['url'])
+        results.append({
+            'name': link['name'],
+            'url': link['url'],
+            'level': level,
+            'reason': reason
+        })
+        print(f"{link['name']}: {level} - {reason}")
+        time.sleep(2)
     
     print("=" * 50)
-    if broken_links:
-        print(f"发现 {len(broken_links)} 个失效链接")
-        send_email(broken_links)
+    
+    # 只要有可疑或失效就发邮件
+    if any(r['level'] in ['suspect', 'bad'] for r in results):
+        send_email(results)
+        print("邮件已发送")
     else:
-        print("所有链接正常")
-        # 也可以每天发一封“一切正常”的邮件，让你安心
-        # send_email([])
+        print("所有链接正常，无需邮件")
+    
     print("检测完成")
 
 if __name__ == "__main__":
